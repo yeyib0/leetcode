@@ -2,10 +2,13 @@ package pkg
 
 import "strings"
 
-func wordPattern(pattern string, s string) (b bool) {
+func wordPattern(pattern string, s string) bool {
 	s2p := make(map[int32]string)
 	p2s := make(map[string]int32)
 	arr := strings.Split(s, " ")
+    if len(arr) != len(pattern) {
+        return false
+    }
 	i := 0
 	for _, p := range pattern {
 		s := arr[i]
@@ -16,6 +19,7 @@ func wordPattern(pattern string, s string) (b bool) {
 			return false
 		}
 		s2p[p] = s
+        p2s[s] = p
 		i++
 	}
 	return true
